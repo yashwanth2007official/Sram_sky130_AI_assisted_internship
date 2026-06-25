@@ -1,0 +1,59 @@
+* 6T SRAM Read Static Noise Margin (RSNM) Simulation
+* Target: SkyWater 130nm PDK (1.8V Operation)
+
+*** 1. MOCK SUBCIRCUIT DEFINITIONS FOR SKY130 MODELS ***
+* (Replace internal models with actual PDK paths if available)
+.subckt sky130_fd_pr__nfet_01v8 d g s b W=0.42 L=0.15
+.model mock_nfet nmos (level=1 vto=0.4 kp=120u)
+M0 d g s b mock_nfet w={W} l={L}
+.ends
+
+.subckt sky130_fd_pr__pfet_01v8 d g s b W=0.21 L=0.15
+.model mock_pfet pmos (level=1 vto=-0.4 kp=40u)
+M0 d g s b mock_pfet w={W} l={L}
+.ends
+
+*** 2. MODULE: 8-TERMINAL 6T SRAM CELL ***
+* Allows external control over the cross-coupled gates to break the loop
+.subckt sram_6t_cell WL BL BLB VDD VSS Q QB Q_gate QB_gate
+* Pull-Down Drivers
+XNM1 QB Q_gate VSS VSS sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+XNM2 Q  QB_gate VSS VSS sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+
+* Pull-Up Loads
+XPM1 QB Q_gate VDD VDD sky130_fd_pr__pfet_01v8 W=0.21 L=0.15
+XPM2 Q  QB_gate VDD VDD sky130_fd_pr__pfet_01v8 W=0.21 L=0.15
+
+* Access Transistors
+XMA1 BLB WL QB VSS sky130_fd_pr__nfet_01v8 W=0.30 L=0.15
+XMA2 BL  WL Q  VSS sky130_fd_pr__nfet_01v8 W=0.30 L=0.15
+.ends
+
+*** 3. POWER SUPPLIES & READ CONDITION BIASING ***
+Vdd  VDD  0 DC 1.8
+Vss  VSS  0 DC 0
+Vwl  WL   0 DC 1.8
+Vbl  BL   0 DC 1.8
+Vblb BLB  0 DC 1.8
+
+* Independent Sweep Source
+Vsrc Vsweep 0 DC 0
+
+*** 4. DUAL INSTANTIATION FOR BUTTERFLY CURVE ***
+* Cell 1: Measures VTC1 (Sweeps Q, Outputs QB)
+Xcell1 WL BL BLB VDD VSS Q1 QB1 Vsweep VSS
+
+* Cell 2: Measures VTC2 Flipped (Sweeps QB, Outputs Q)
+Xcell2 WL BL BLB VDD VSS Q2 QB2 VSS    Vsweep
+
+*** 5. SIMULATION DIRECTIVE ***
+.dc Vsrc 0 1.8 0.01
+
+*** 6. CONTROL BLOCK FOR PLOTTING ***
+.control
+run
+set xbrushwidth=2
+plot v(qb1) v(q2) title 'Sky130 6T SRAM RSNM Butterfly Curve' xl 0 1.8 yl 0 1.8
+.endc
+
+.end

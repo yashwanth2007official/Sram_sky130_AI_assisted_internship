@@ -8,4 +8,6 @@ Precharge
 AMPLIFIER   
 <img width="607" height="502" alt="Screenshot 2026-06-25 184832" src="https://github.com/user-attachments/assets/f9be6f2d-ce0f-4fdb-930a-7b7ff3b5b1e6" />  
 
+WRITE DRIVER  
+<img width="592" height="497" alt="Screenshot 2026-06-25 214106" src="https://github.com/user-attachments/assets/f26d25bc-9dfd-4166-a3fa-a4a99bc6a27c" />
 

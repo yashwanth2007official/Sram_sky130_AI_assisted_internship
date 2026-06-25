@@ -1,13 +1,12 @@
-# Week 1: Research Fundamentals, PDK Integration & AI-Assisted Architecture Exploration
+# Development of an AI-Assisted 32k bit Sram 
 
-## Project Overview
+### Project Overview
 This repository contains the foundational research, environment specifications, and AI-assisted engineering methodology for a **32 Kbit (1024x32 / 4 KB) SRAM Macro**. The design targets the open-source **Google SkyWater 130nm PDK** node, an operating voltage of **1.8V**, and an optimized access time of **< 2.5ns** using the **OpenRAM** memory compiler framework.
 
-Our baseline structural reference is modeled after the `ShonTaware/SRAM_SKY130` implementation. 
 
 ---
-
-## Technical Specifications & Architectural Hierarchy
+## Week 1: Research Fundamentals, PDK Integration & AI-Assisted Architecture Exploration
+### Technical Specifications & Architectural Hierarchy
 The 4 KB memory macro is architected as a hierarchical array of 1024 rows by 32 columns. To manage data access cycles efficiently, the memory is decomposed into the following core sub-blocks:
 
 * **6T SRAM Core Array:** A matrix of bistable latches holding individual bits using symmetrical cross-coupled CMOS inverters and dual pass-transistor access gates.
@@ -18,7 +17,7 @@ The 4 KB memory macro is architected as a hierarchical array of 1024 rows by 32 
 
 ---
 
-## Open-Source EDA Tool Interconnect
+### Open-Source EDA Tool Interconnect
 The end-to-end framework bridges independent open-source tools into an automated compilation pipeline:
 
 ```text
@@ -34,36 +33,36 @@ The end-to-end framework bridges independent open-source tools into an automated
   +------------------+     +--------------------+     +-------------------+
 
 ```
-# Weeks 2 & 3: Transistor-Level Circuit Design & SPICE Verification
+## Weeks 2 & 3: Transistor-Level Circuit Design & SPICE Verification
 
-## Project Overview
+### Project Overview
 This stage of the internship focuses entirely on the transistor-level circuit design, stability analysis, and functional verification of critical SRAM peripheral and core blocks. All simulations utilize the open-source **Xschem** schematic editor and **Ngspice** circuit simulator, targeted at the **Google SkyWater 130nm PDK** node operating at 1.8V.
 
 The primary objective is to verify circuit building blocks to achieve a target macro access time of < 2.5ns.
 
 ---
 
-## Circuit Blocks Covered & Verified
+### Circuit Blocks Covered & Verified
 
-### 1. 6T SRAM Bitcell
+#### 1. 6T SRAM Bitcell
 * **Core Latch:** Implemented using cross-coupled CMOS inverter primitives (`sky130_fd_pr__nfet_01v8` and `sky130_fd_pr__pfet_01v8`).
 * **Sizing Optimization:** Set Cell Ratio (CR) to 2.0 to eliminate read disturb and ensure a robust Read Static Noise Margin (RSNM).
 * **Characterization:** Plotted Voltage Transfer Characteristics (VTC) to generate the signature "Butterfly Curve".
 
-### 2. Pre-charge Circuit
+#### 2. Pre-charge Circuit
 * Built using a 3-PMOS transistor topology (two pull-ups, one equalization switch).
 * Successfully charges and equilibrates the highly capacitive bitlines ($BL$ and $\overline{BL}$) to exactly 1.8V during the active-low `PRE_B` cycle phase.
 
-### 3. Latch-Based Sense Amplifier
+#### 3. Latch-Based Sense Amplifier
 * Designed a high-speed, cross-coupled differential sense amplifier.
 * Amplifies a micro-volt bitline differential voltage ($\Delta V \approx 100mV$) to full rail-to-rail digital CMOS logic outputs upon activation of the `SA_EN` pulse signal.
 
-### 4. Write Driver
+#### 4. Write Driver
 * Utilizes high-drive-strength tri-state inverter structures to pull the targeted bitline cleanly to 0V (GND), forcefully overpowering the internal feedback loop of the 6T cell during write cycles.
 
 ---
 
-## Master Timing Sequence & Choreography
+### Master Timing Sequence & Choreography
 
 The successful execution of a complete memory access cycle follows a strict chronographic sequence verified in our transient simulation decks:
 
@@ -74,11 +73,9 @@ The successful execution of a complete memory access cycle follows a strict chro
 
 ---
 
-## Simulation Waveforms & Results
-
-### 6T Bitcell Butterfly Curve (RSNM)
-`<img width="607" height="506" alt="Screenshot 2026-06-25 121459" src="https://github.com/user-attachments/assets/ea742c2d-4c50-47f6-89ef-f21054a12eeb" />
-
-
-### Transient Simulation: Read/Write Clock Cycles
-`![Transient Access Sequence](Simulation_Results/transient_timing.png)`
+### Simulation Waveforms & Results
+#### 6T Bitcell Butterfly Curve (RSNM and HSNM)
+`<img width="607" height="506" alt="Screenshot 2026-06-25 121459" src="https://github.com/user-attachments/assets/ea742c2d-4c50-47f6-89ef-f21054a12eeb" />  
+<img width="598" height="502" alt="Screenshot 2026-06-25 122333" src="https://github.com/user-attachments/assets/271016aa-1daf-43e5-9b4c-6d1837cd1a5a" />  
+#### Transient Simulation: Read/Write Clock Cycles
+<img width="607" height="502" alt="Screenshot 2026-06-25 184832" src="https://github.com/user-attachments/assets/ac065690-b738-4f2a-8993-55cee76306e8" />

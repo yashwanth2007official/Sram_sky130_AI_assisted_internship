@@ -75,10 +75,10 @@ The successful execution of a complete memory access cycle follows a strict chro
 ---
 
 ## Simulation Waveforms & Results
-*(Place your generated Ngspice waveform images below)*
 
 ### 6T Bitcell Butterfly Curve (RSNM)
-`![6T Cell Butterfly Curve](Simulation_Results/butterfly_curve.png)`
+`<img width="607" height="506" alt="Screenshot 2026-06-25 121459" src="https://github.com/user-attachments/assets/ea742c2d-4c50-47f6-89ef-f21054a12eeb" />
+
 
 ### Transient Simulation: Read/Write Clock Cycles
 `![Transient Access Sequence](Simulation_Results/transient_timing.png)`

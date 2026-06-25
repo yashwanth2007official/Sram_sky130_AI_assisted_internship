@@ -81,4 +81,7 @@ The successful execution of a complete memory access cycle follows a strict chro
 <img width="602" height="507" alt="Screenshot 2026-06-25 180214" src="https://github.com/user-attachments/assets/3765278a-9d7f-44a3-a37a-7549c90f418a" />   
 
 #### Transient Simulation: Read/Write Clock Cycles
-<img width="607" height="502" alt="Screenshot 2026-06-25 184832" src="https://github.com/user-attachments/assets/ac065690-b738-4f2a-8993-55cee76306e8" />
+<img width="607" height="502" alt="Screenshot 2026-06-25 184832" src="https://github.com/user-attachments/assets/ac065690-b738-4f2a-8993-55cee76306e8" />  
+Write  
+<img width="592" height="497" alt="Screenshot 2026-06-25 214106" src="https://github.com/user-attachments/assets/471afb34-a7e9-407a-acd3-56e00c595b11" />  
+

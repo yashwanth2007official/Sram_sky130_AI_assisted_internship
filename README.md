@@ -77,5 +77,8 @@ The successful execution of a complete memory access cycle follows a strict chro
 #### 6T Bitcell Butterfly Curve (RSNM and HSNM)
 `<img width="607" height="506" alt="Screenshot 2026-06-25 121459" src="https://github.com/user-attachments/assets/ea742c2d-4c50-47f6-89ef-f21054a12eeb" />  
 <img width="598" height="502" alt="Screenshot 2026-06-25 122333" src="https://github.com/user-attachments/assets/271016aa-1daf-43e5-9b4c-6d1837cd1a5a" />  
+#### Precharge
+<img width="602" height="507" alt="Screenshot 2026-06-25 180214" src="https://github.com/user-attachments/assets/3765278a-9d7f-44a3-a37a-7549c90f418a" />   
+
 #### Transient Simulation: Read/Write Clock Cycles
 <img width="607" height="502" alt="Screenshot 2026-06-25 184832" src="https://github.com/user-attachments/assets/ac065690-b738-4f2a-8993-55cee76306e8" />

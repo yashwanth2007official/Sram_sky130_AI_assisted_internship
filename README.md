@@ -82,6 +82,6 @@ The successful execution of a complete memory access cycle follows a strict chro
 
 #### Transient Simulation: Read/Write Clock Cycles
 <img width="607" height="502" alt="Screenshot 2026-06-25 184832" src="https://github.com/user-attachments/assets/ac065690-b738-4f2a-8993-55cee76306e8" />  
-Write Driver  
+  Write Driver  
 <img width="592" height="497" alt="Screenshot 2026-06-25 214106" src="https://github.com/user-attachments/assets/471afb34-a7e9-407a-acd3-56e00c595b11" />  
 

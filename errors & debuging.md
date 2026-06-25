@@ -11,7 +11,8 @@ In Read Static Noise Margin (RSNM) simulation, but the two loops (the "eyes" of 
 In a robust SRAM design,  two eyes are to be as wide and square as possible. The size of the largest square you can fit inside those loops decides how much noise voltage the cell can tolerate before it instantly corrupts its data. Right now,  cell has a very weak noise margin. If a tiny bit of electronic noise hits this cell during a read operation, it will experience a Read Disturb and flip its data accidentally.  
 <img width="602" height="532" alt="Screenshot 2026-06-25 120611" src="https://github.com/user-attachments/assets/ee55f407-0eff-4cbe-aea0-a858ac62d52a" />  
 SOLUTION: :make the internal pull-down NMOS drivers much stronger by doubling their width ($W$) from 0.42 to 0.84
-<img width="598" height="502" alt="Screenshot 2026-06-25 122333" src="https://github.com/user-attachments/assets/0e2eb61a-6885-4ebf-8b93-91ebe7eca231" />
+<img width="607" height="506" alt="Screenshot 2026-06-25 121459" src="https://github.com/user-attachments/assets/a94ddf14-1134-45a4-8b6a-451c85ed7a85" />
+
 
 
 ### Error-2:Amplifier

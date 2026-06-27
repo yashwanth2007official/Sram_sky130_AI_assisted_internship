@@ -1,3 +1,4 @@
+**AI MODEL USED:** Gemini-3.5 Pro,Gpt-5.5,Opus-4.6 Sonnet
 # week-1
 ## phase-1_1
 ### Understanding the concept and given example

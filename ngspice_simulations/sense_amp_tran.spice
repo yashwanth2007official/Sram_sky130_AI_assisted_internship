@@ -1,0 +1,48 @@
+* Phase 3: Latch-Based Sense Amplifier Verification
+* Target: SkyWater 130nm PDK (1.8V, TT Corner, hsa mode)
+
+*** 1. FOUNDRY PDK INCLUSION & SEARCH PATH ***
+.options search="/mnt/c/Users/yashw/SRAM_SKY130/OPENRAM/sky130A/models"
+.lib "/mnt/c/Users/yashw/SRAM_SKY130/OPENRAM/sky130A/models/sky130.lib.spice" tt
+
+*** 2. MODULE: LATCH-BASED SENSE AMPLIFIER (DRC COMPLIANT) ***
+.subckt voltage_sense_amp VDD VSS SA_EN BL BLB SA_OUT SA_OUTB
+* Cross-coupled inverter pair (The Core Latch)
+XNM1 SA_OUT  SA_OUTB tail VSS sky130_fd_pr__nfet_01v8 W=0.84 L=0.15
+XNM2 SA_OUTB SA_OUT  tail VSS sky130_fd_pr__nfet_01v8 W=0.84 L=0.15
+XPM1 SA_OUT  SA_OUTB VDD  VDD  sky130_fd_pr__pfet_01v8 W=0.42 L=0.15
+XPM2 SA_OUTB SA_OUT  VDD  VDD  sky130_fd_pr__pfet_01v8 W=0.42 L=0.15
+
+* Gated pass transistors bridging internal latch nodes to Bitlines
+XISO1 SA_OUT  SA_EN BL  VDD sky130_fd_pr__pfet_01v8 W=0.42 L=0.15
+XISO2 SA_OUTB SA_EN BLB VDD sky130_fd_pr__pfet_01v8 W=0.42 L=0.15
+
+* Tail NMOS enabling switch
+XENABLE tail SA_EN VSS VSS sky130_fd_pr__nfet_01v8 W=1.2 L=0.15
+.ends
+
+*** 3. POWER SUPPLIES & BITLINE DIFFERENTIAL INPUTS ***
+Vdd VDD 0 DC 1.8
+Vss VSS 0 DC 0
+
+* Simulating the exact 100mV differential drop developed by a cell read
+Vbl  BL  0 DC 1.8
+Vblb BLB 0 DC 1.7
+
+* SA_EN fires high to 1.8V at 1.5ns to isolate inputs and latch data
+Vstrobe SA_EN 0 PULSE(0 1.8 1.5ns 0.05ns 0.05ns 2ns 5ns)
+
+*** 4. INSTANTIATION ***
+XSA1 VDD VSS SA_EN BL BLB SA_OUT SA_OUTB voltage_sense_amp
+
+*** 5. SIMULATION DIRECTIVE ***
+.tran 0.01ns 3.2ns uic
+
+*** 6. CONTROL BLOCK FOR PLOTTING ***
+.control
+run
+set xbrushwidth=2
+plot v(sa_en) v(sa_out) v(sa_outb) title 'Phase 3: Real Sky130 Sense Amplifier Response'
+.endc
+
+.end

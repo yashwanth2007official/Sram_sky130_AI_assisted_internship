@@ -66,7 +66,7 @@
 **Context:** Fully integrated SRAM memory column running on true Sky130 PDK models.  
 **Task:** Construct an integrated transient verification testbench that models the complete write sequence pipeline. Choreograph a precise chronographic clock injection schema: Pre-charge active from 0-1ns, Wordline (WL) activated at 1.5ns, and Write Enable (WEN) toggled high at 1.7ns with DATA_IN=0. Embed automated SPICE .measure directives to calculate the exact 'Write Access Delay' by measuring the time delta between WEN reaching 50% VDD and the internal cell node Q dropping to 50% VDD, validating it against a target system speed limit of 2.5ns.  
 **AI Response Summary:** Generated a fully integrated transient timing deck with chronographic clock signals and SPICE .measure directives.  
-**Generated File:** `precharge_tran.spice`
+**Generated File:** `precharge_tran.spice`  
 **Result:** Terminal .measure output confirmed an exact Write Access Delay of 265.79 picoseconds (Target was < 2.5ns).  
 ## phase-2_7: Latch-Based Differential Sense Amplifier Verification
 **My Prompt:**

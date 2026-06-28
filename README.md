@@ -79,7 +79,8 @@ The successful execution of a complete memory access cycle follows a strict chro
 
 #### **Precharge**
 <img width="602" height="502" alt="Screenshot 2026-06-27 111618" src="https://github.com/user-attachments/assets/0efee88e-e434-40e6-981b-3c7096e95d20" />
-write_access_delay = $265.79\text{ ps}$ extracted via automated .measure commands (Target was $<2.5\text{ ns}$)
+Measurements for Transient Analysis
+write_access_delay  =  2.657895e-10(265 picosec/0.265 nano sec) extracted via automated .measure commands (Target was <2.5ns)
 
 #### Sense amplifier
 <img width="606" height="512" alt="Screenshot 2026-06-27 113110" src="https://github.com/user-attachments/assets/76a98252-9390-4e0b-af44-a75a7e7e78a0" />

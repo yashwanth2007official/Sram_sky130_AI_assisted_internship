@@ -1,6 +1,6 @@
 
 # AI Prompt & Generation Log
-**AI MODEL USED:** Gemini-3.5 Pro,Gpt-5.5,Opus-4.6 Sonnet
+**AI MODEL USED:** Gemini-3.5 Pro,Gpt-5.5,Opus-4.6 Sonnet  
 **Goal:** Step-by-step circuit verification of SRAM blocks using actual Sky130 PDK models.
 
 ---
